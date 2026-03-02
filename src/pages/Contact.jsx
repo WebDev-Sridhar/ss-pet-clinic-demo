@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { PhoneIcon, EnvelopeIcon, MapPinIcon, ClockIcon, HeartIcon, GetInTouchIcon } from "../util/Icons"
+import FAQ from "../components/FAQ"
 
 export default function Contact() {
   const [hovered, setHovered] = useState(false)
@@ -7,7 +8,7 @@ export default function Contact() {
   return (
     <div className="relative min-h-screen bg-cream font-['Inter','Outfit',sans-serif] overflow-hidden">
   <section
-        className="relative min-h-[80vh] flex items-center justify-center text-center px-6  z-10 "
+        className="relative md:min-h-[80vh] min-h-[60vh] flex items-center justify-center text-center px-6  z-10 "
         style={{
           background: 'linear-gradient(135deg, #0F4C5C 0%, #17697E 40%, #1E8A9E 70%, #0F4C5C 100%)',
         }}
@@ -48,7 +49,7 @@ export default function Contact() {
         <div className="absolute inset-0 bg-cream/55" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-start">
+<div className="relative z-10 max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-start">
 
         {/* ───────── LEFT SIDE ───────── */}
         <div>
@@ -111,15 +112,9 @@ export default function Contact() {
             </ul>
           </div>
 
-          {/* Static Map Placeholder */}
-          <div className="mt-10 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-            <img
-              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80"
-              alt="Map location placeholder"
-              className="w-full h-56 object-cover"
-            />
-          </div>
+  
         </div>
+        
 
         {/* ───────── RIGHT SIDE (FORM) ───────── */}
         <div
@@ -176,7 +171,11 @@ export default function Contact() {
               Send Message →
             </button>
           </form>
+
         </div>
+          <div className=" text-center lg:col-span-2">
+   <FAQ/>
+</div>
       </div>
 
       {/* Floating Emergency Button */}
@@ -186,6 +185,8 @@ export default function Contact() {
       >
         <PhoneIcon className="w-6 h-6" />
       </a>
+
     </div>
+
   )
 }

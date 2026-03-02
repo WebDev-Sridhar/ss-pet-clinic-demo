@@ -6,7 +6,7 @@ const Counter = ({ value, suffix = "" }) => {
 
   useEffect(() => {
     let start = 0
-    const duration = 1500
+    const duration = 2500
     const increment = value / (duration / 16)
 
     const timer = setInterval(() => {

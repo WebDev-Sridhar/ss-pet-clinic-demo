@@ -1,4 +1,5 @@
 import {ServiceIcon, CheckIcon} from '../util/Icons'
+import FAQ from '../components/FAQ'
 
 
 /* ─── Services data ─── */
@@ -55,7 +56,7 @@ export default function Services() {
 
       {/* ── Hero Banner ── */}
       <section
-        className="relative min-h-[80vh] flex items-center justify-center text-center px-6 "
+        className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center text-center px-6 "
         style={{
           background: 'linear-gradient(135deg, #0F4C5C 0%, #17697E 40%, #1E8A9E 70%, #0F4C5C 100%)',
         }}
@@ -145,6 +146,7 @@ export default function Services() {
           })}
         </div>
       </section>
+      <FAQ/>
 
       {/* ── CTA Banner ── */}
       <section className="py-24 px-6">

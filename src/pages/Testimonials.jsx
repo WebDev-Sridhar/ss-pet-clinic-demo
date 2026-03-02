@@ -51,7 +51,7 @@ export default function Testimonials() {
   return (
     <div className="min-h-screen bg-cream font-['Inter','Outfit',sans-serif] mb-20">
          <section
-        className="relative min-h-[80vh] flex items-center justify-center text-center px-6"
+        className="relative min-h-[60vh] md:min-h-[80vh] flex items-center justify-center text-center px-6"
         style={{
           background: 'linear-gradient(135deg, #0F4C5C 0%, #17697E 40%, #1E8A9E 70%, #0F4C5C 100%)',
         }}
@@ -84,8 +84,7 @@ export default function Testimonials() {
           </svg>
         </div>
       </section>
-      <div className="max-w-6xl mx-auto text-center">
-
+      <div className="max-w-6xl mx-auto text-center mt-6">
 
         <h1 className="text-4xl sm:text-5xl font-black text-teal-primary">
           Trusted by Pet Families

@@ -20,7 +20,7 @@ export default function About() {
     <div className="min-h-screen bg-cream font-['Inter',_'Outfit',_sans-serif] overflow-x-hidden">
 
       <section
-        className="relative min-h-[80vh] flex items-center justify-center text-center px-6 "
+        className="relative md:min-h-[80vh] min-h-[60vh] flex items-center justify-center text-center px-6 "
         style={{
           background: 'linear-gradient(135deg, #0F4C5C 0%, #17697E 40%, #1E8A9E 70%, #0F4C5C 100%)',
         }}

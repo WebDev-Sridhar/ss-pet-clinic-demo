@@ -105,4 +105,11 @@ fill="currentColor" viewBox="0 0 24 24" >
     <path d="M20.24 4.76c-2.3-2.29-5.87-2.35-8.24-.19-2.37-2.16-5.93-2.09-8.24.2-2.36 2.37-2.36 6.07 0 8.43l7.53 7.52c.2.19.45.29.71.29s.51-.1.71-.29l7.53-7.52c2.36-2.36 2.36-6.06 0-8.43ZM12 18.59l-6.82-6.81a3.92 3.92 0 0 1 0-5.6C5.97 5.39 6.98 5 7.99 5s2.02.39 2.8 1.18l.5.5-2.38 2.39c-.51.52-.51 1.36 0 1.88.49.49 1.13.73 1.77.73s1.28-.24 1.77-.73l1.64-1.64 3.59 3.59-1.04 1.04-2.3-2.3-.71.71 2.3 2.3-.79.79-2.3-2.3-.71.71 2.3 2.3-.79.79-2.29-2.29-.71.71 2.29 2.29-.94.94Zm6.82-6.81-.42.42-3.59-3.59 1.24-1.24-.71-.71-3.59 3.59c-.58.58-1.54.58-2.12 0a.33.33 0 0 1 0-.47l3.42-3.44.16-.16c1.57-1.57 4.04-1.57 5.62 0 1.57 1.58 1.57 4.04 0 5.6Z"></path>
 </svg>
 )   
-export { PawIcon, HeartIcon, EyeIcon, TargetIcon, PhoneIcon, MapPinIcon, MailIcon, ClockIcon, EnvelopeIcon, StethoscopeIcon, ScissorsIcon, SyringeIcon, ShieldIcon, StarIcon, CheckIcon, BubbleIcon, ServiceIcon, GetInTouchIcon }
+
+const BoltIcon = ({ className = 'w-5 h-5' }) => (
+<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+fill="coral" viewBox="0 0 24 24" >
+<path d="M20 9h-8V2c0-.45-.3-.85-.74-.97s-.9.07-1.12.46l-7 12.01c-.18.31-.18.69 0 1s.51.5.87.5h8v7c0 .45.3.85.74.97.09.02.17.03.26.03.35 0 .68-.18.86-.5l7-12c.18-.31.18-.69 0-1S20.36 9 20 9"></path>
+</svg>
+)
+export { PawIcon, HeartIcon, EyeIcon, TargetIcon, PhoneIcon, MapPinIcon, MailIcon, ClockIcon, EnvelopeIcon, StethoscopeIcon, ScissorsIcon, SyringeIcon, ShieldIcon, StarIcon, CheckIcon, BubbleIcon, ServiceIcon, GetInTouchIcon, BoltIcon }

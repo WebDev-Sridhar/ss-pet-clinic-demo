@@ -101,11 +101,12 @@ export default function Navbar() {
           {/* TOP */}
           <div>
             <div className="flex items-center justify-between mb-10">
-              <span className="text-xl font-bold text-teal-primary">
-                Menu
+              <span className="text-xl font-bold text-teal-primary flex items-center gap-2">
+               <PawIcon/> S.S Pet Clinic
               </span>
               <button onClick={() => setOpen(false)}>✕</button>
             </div>
+            <hr className="mb-6" />
 
             <ul className="space-y-6 text-gray-700 font-medium">
               {links.map((l) => (

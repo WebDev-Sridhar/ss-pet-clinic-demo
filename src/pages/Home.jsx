@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { PawIcon, HeartIcon, ClockIcon, StethoscopeIcon, ScissorsIcon, SyringeIcon, ShieldIcon, StarIcon, MapPinIcon } from "../util/Icons" 
+import { PawIcon, HeartIcon, ClockIcon, StethoscopeIcon, ScissorsIcon, SyringeIcon, ShieldIcon, StarIcon, MapPinIcon, BoltIcon  } from "../util/Icons" 
 import Doctors from '../components/Doctors'
 import GalleryComponent from '../components/GalleryComponent'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import Counter from '../components/Counter'
 import TextAnimation from '../components/TextAnimation'
+import FAQ from '../components/FAQ'
 
 
 
@@ -115,14 +116,14 @@ export default function Home() {
                 href="tel:+911234567890"
                 className="group inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white font-semibold text-lg px-8 py-4 rounded-2xl transition-transform duration-300 hover:scale-110 hover:bg-white/20"
               >
-                <HeartIcon className="w-5 h-5 text-coral transition-transform duration-300 group-hover:scale-125" />
+                <BoltIcon className="w-5 h-5 text-coral transition-transform duration-300 group-hover:scale-125" />
                 Emergency Care
               </a>
             </div>
           </div>
 
           {/* Right — hero image */}
-          <div className="hidden lg:block">
+          <div className=" lg:block">
             <div className="group relative rounded-2xl overflow-hidden shadow-2xl shadow-black/30">
               <img
                 src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=700&h=800&fit=crop&q=80"
@@ -293,7 +294,7 @@ export default function Home() {
         </div>
         </div>
       </section>
-
+<FAQ/>
 
       {/* ── CTA Banner ── */}
       <section className="py-24 px-6">

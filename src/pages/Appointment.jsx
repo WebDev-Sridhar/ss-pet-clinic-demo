@@ -1,4 +1,5 @@
 import { useState } from "react"
+import FAQ from "../components/FAQ"
 
 export default function Appointment() {
   const [loading, setLoading] = useState(false)
@@ -151,6 +152,9 @@ export default function Appointment() {
               )}
             </button>
           </form>
+        </div>
+                  <div className=" text-center lg:col-span-2">
+           <FAQ/>
         </div>
       </div>
 

@@ -44,6 +44,12 @@ const MailIcon = ({ className = 'w-5 h-5' }) => (
   </svg>
 )
 
+const BoltIcon = ({ className = 'w-5 h-5' }) => (
+<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+fill="currentColor" viewBox="0 0 24 24" >
+<path d="M20 9h-8V2c0-.45-.3-.85-.74-.97s-.9.07-1.12.46l-7 12.01c-.18.31-.18.69 0 1s.51.5.87.5h8v7c0 .45.3.85.74.97.09.02.17.03.26.03.35 0 .68-.18.86-.5l7-12c.18-.31.18-.69 0-1S20.36 9 20 9"></path>
+</svg>
+)
 
 /* ─── data ─── */
 const stats = [
@@ -89,7 +95,7 @@ const Footer = () => {
               <li className="flex justify-between"><span>Saturday</span><span className="text-white/90">9:00 AM – 6:00 PM</span></li>
               <li className="flex justify-between"><span>Sunday</span><span className="text-white/90">10:00 AM – 4:00 PM</span></li>
               <li className="flex items-center gap-1 text-coral font-medium mt-2">
-                <HeartIcon className="w-4 h-4" /> Emergency: 24/7
+                <BoltIcon className="w-4 h-4" /> Emergency: 24/7
               </li>
             </ul>
           </div>
