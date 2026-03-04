@@ -49,54 +49,56 @@ export default function Services() {
       </motion.section>
 
       {/* ── Service Sections ── */}
-      <motion.section
-       variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-       className="bg-cream py-20 px-6">
-        <motion.div
-       variants={fadeInUp}
-        className="max-w-6xl mx-auto flex flex-col gap-20">
-          {services.map((s, i) => {
-            const isReversed = i % 2 !== 0
-            return (
-              <div
-          
-                key={i}
-              
-                className={`group flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-10 items-center`}
-              >
-                {/* Image */}
-               <div
-                key={i}
-                className="w-full lg:w-1/2">
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-gray-200/60">
-                    <img
-                      src={s.img}
-                      alt={s.title}
-                      className="w-full h-72 sm:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-teal-primary/40 via-transparent to-transparent pointer-events-none" />
-                    {/* floating badge */}
-                    <div className={`absolute bottom-4 ${isReversed ? 'right-4' : 'left-4'} bg-coral text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg`}>
-                      {String(i + 1).padStart(2, '0')}
-                    </div>
-                  </div>
-                </div>
+     <section className="bg-cream py-20 px-6">
+  <div className="max-w-6xl mx-auto flex flex-col gap-20">
+    {services.map((s, i) => {
+      const isReversed = i % 2 !== 0
 
-                {/* Content */}
-                <div  className="w-full lg:w-1/2">
-                  <span className="inline-block bg-teal-primary/10 text-teal-primary text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
-                    {s.tagline}
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-teal-primary leading-tight">
-                    {s.title}
-                  </h2>
-                  <p className="mt-4 text-gray-500 leading-relaxed">
-                    {s.desc}
-                  </p>
-                  <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+      return (
+        <motion.div
+          key={i}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className={`group flex flex-col ${
+            isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
+          } gap-10 items-center`}
+        >
+          {/* Image */}
+          <motion.div
+            variants={isReversed ? fadeInLeft : fadeInRight}
+            className="w-full lg:w-1/2"
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-gray-200/60">
+              <img
+                src={s.img}
+                alt={s.title}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-72 sm:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-primary/40 via-transparent to-transparent pointer-events-none" />
+            </div>
+          </motion.div>
+
+          {/* Content */}
+          <motion.div
+            variants={fadeInUp}
+            className="w-full lg:w-1/2"
+          >
+            <span className="inline-block bg-teal-primary/10 text-teal-primary text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+              {s.tagline}
+            </span>
+
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-teal-primary leading-tight">
+              {s.title}
+            </h2>
+
+            <p className="mt-4 text-gray-500 leading-relaxed">
+              {s.desc}
+            </p>
+             <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {s.features.map((f, j) => (
                       <li key={j} className="flex items-center gap-2 text-sm text-gray-600">
                         <span className="flex items-center justify-center w-5 h-5 rounded-full bg-teal-primary/10 text-teal-primary shrink-0">
@@ -112,12 +114,12 @@ export default function Services() {
                   >
                     Book This Service <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                   </a>
-                </div>
-              </div>
-            )
-          })}
+          </motion.div>
         </motion.div>
-      </motion.section>
+      )
+    })}
+  </div>
+</section>
       <FAQ/>
 
       {/* ── CTA Banner ── */}
