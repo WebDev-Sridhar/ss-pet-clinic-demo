@@ -1,8 +1,12 @@
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" })
+  }
+
   try {
     const { message } = req.body
 
-    const response = await fetch("https://api.retellai.com/v1/chat", {
+    const response = await fetch("https://api.retellai.com/create-chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -10,21 +14,11 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         agent_id: process.env.RETELL_AGENT_ID,
-        input: message,
+        metadata: {}, 
       }),
     })
 
-    const text = await response.text()
-    console.log(text)
-
-    // Try parsing safely
-    let data
-    try {
-      data = JSON.parse(text)
-    } catch (err) {
-      console.error("Retell returned non-JSON:", text)
-      return res.status(500).json({ error: "Invalid response from Retell" })
-    }
+    const data = await response.json()
 
     if (!response.ok) {
       console.error("Retell API error:", data)
@@ -32,7 +26,10 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      reply: data?.output || "No response from AI",
+      reply: data?.chat_id
+        ? "Chat session created successfully"
+        : "No response from AI",
+      chat_id: data?.chat_id,
     })
   } catch (error) {
     console.error("Server error:", error)
