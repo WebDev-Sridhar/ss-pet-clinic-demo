@@ -9,12 +9,21 @@ import Contact from './pages/Contact'
 import Gallery from './pages/Gallery'
 import Appointment from './pages/Appointment'
 import ScrollToTop from './components/ScrollToTop'
+import BlogDetail from './pages/BlogDetail'
+import { lazy, Suspense } from 'react'
+import Loading from './components/Loading'
+
+  const Blog = lazy(() => import("./pages/Blog"))
+
 function App() {
+
   return (
     <BrowserRouter>
     <ScrollToTop />
     <Navbar />
+   
       <Routes>
+       
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
@@ -22,7 +31,11 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/appointment" element={<Appointment />} />
+        <Route path="/blog" element={  <Suspense fallback={<Loading />}><Blog /></Suspense>} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+   
       </Routes>
+  
       <Footer />
     </BrowserRouter>
   )

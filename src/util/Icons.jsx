@@ -112,4 +112,25 @@ fill="coral" viewBox="0 0 24 24" >
 <path d="M20 9h-8V2c0-.45-.3-.85-.74-.97s-.9.07-1.12.46l-7 12.01c-.18.31-.18.69 0 1s.51.5.87.5h8v7c0 .45.3.85.74.97.09.02.17.03.26.03.35 0 .68-.18.86-.5l7-12c.18-.31.18-.69 0-1S20.36 9 20 9"></path>
 </svg>
 )
-export { PawIcon, HeartIcon, EyeIcon, TargetIcon, PhoneIcon, MapPinIcon, MailIcon, ClockIcon, EnvelopeIcon, StethoscopeIcon, ScissorsIcon, SyringeIcon, ShieldIcon, StarIcon, CheckIcon, BubbleIcon, ServiceIcon, GetInTouchIcon, BoltIcon }
+
+const QuoteIcon = ({ className = 'w-5 h-5' }) => (
+<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+fill="currentColor" viewBox="0 0 24 24" >
+  <path d="M17 13V6c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h2.85c-.27 1.02-1.01 2.51-3.1 3.03l-.76.19V20h1c2.78 0 4.91-.77 6.31-2.29 1.89-2.05 1.7-4.68 1.69-4.71Zm-3.18 3.37c-.48.52-1.11.91-1.87 1.19 1.56-1.42 2.04-3.4 2.04-4.56v-1h-5V6h6v7.08s.12 1.9-1.18 3.29Z"></path>
+</svg>
+)
+
+const CalenderIcon = ({ className = 'w-5 h-5' }) => (
+<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+fill="currentColor" viewBox="0 0 24 24" >
+<path d="M19 4h-2V2h-2v2H9V2H7v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8c.13 0 .26-.03.38-.08s.23-.12.33-.22l7-7c.09-.09.15-.19.2-.29l.03-.09c.03-.08.05-.17.05-.26 0-.02.01-.04.01-.06V6c0-1.1-.9-2-2-2m0 9h-6c-.55 0-1 .45-1 1v6H5V8h14z"></path>
+</svg>
+)
+
+const GalleryIcon = ({ className = 'w-5 h-5' }) => (
+<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+fill="currentColor" viewBox="0 0 24 24" >
+<path d="M8.5 8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 1 0 0-3m2.5 5.5L9.5 12 7 15h10l-3-5z"></path><path d="M12 2C6.49 2 2 6.49 2 12c0 2.12.68 4.19 1.93 5.9l-1.75 2.53c-.21.31-.24.7-.06 1.03.17.33.51.54.89.54h9c5.51 0 10-4.49 10-10S17.51 2 12 2m0 18H4.91L6 18.43c.26-.37.23-.88-.06-1.22A7.98 7.98 0 0 1 4.01 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8Z"></path>
+</svg>
+)
+export { PawIcon, HeartIcon, EyeIcon, TargetIcon, PhoneIcon, MapPinIcon, MailIcon, ClockIcon, EnvelopeIcon, StethoscopeIcon, ScissorsIcon, SyringeIcon, ShieldIcon, StarIcon, CheckIcon, BubbleIcon, ServiceIcon, GetInTouchIcon, BoltIcon, QuoteIcon, CalenderIcon, GalleryIcon }

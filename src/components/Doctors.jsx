@@ -1,34 +1,10 @@
 import { useState } from "react"
 import { HeartIcon } from "../util/Icons"
+import { doctors } from '../data/doctors'
+import { motion } from "framer-motion"
+import { fadeInUp, staggerContainer, viewportOnce } from "../util/useScrollAnimation"
 
 export default function Doctors() {
-  const doctors = [
-    {
-      name: "Dr. Ananya Sharma",
-      specialty: "Veterinary Surgeon",
-      bio: "With over 12 years of surgical experience, Dr. Ananya specializes in soft tissue and emergency procedures, ensuring compassionate and precise care for every patient.",
-      img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80",
-    },
-    {
-      name: "Dr. Rahul Menon",
-      specialty: "Pet Nutrition & Wellness",
-      bio: "Focused on preventive healthcare and balanced nutrition plans, Dr. Rahul helps pets live longer, healthier, and more energetic lives.",
-      img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80",
-    },
-    {
-      name: "Dr. Priya Nair",
-      specialty: "Dermatology Specialist",
-      bio: "Dr. Priya treats complex skin and allergy conditions with modern diagnostics and a gentle, patient-first approach.",
-      img: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80",
-    },
-    {
-      name: "Dr. Karthik Iyer",
-      specialty: "Internal Medicine",
-      bio: "Expert in diagnosing chronic illnesses and metabolic disorders, Dr. Karthik combines technology with empathy for holistic treatment.",
-      img: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=80",
-    },
-  ]
-
   const [hovered, setHovered] = useState(null)
 
   return (
@@ -46,9 +22,15 @@ export default function Doctors() {
           providing world-class care for your beloved companions.
         </p>
 
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <motion.div
+        variants={staggerContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={viewportOnce}
+        className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {doctors.map((doc, i) => (
-            <div
+            <motion.div
+            variants={fadeInUp}
               key={i}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
@@ -73,9 +55,9 @@ export default function Doctors() {
               <p className="mt-4 text-gray-600 text-sm leading-relaxed">
                 {doc.bio}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   )

@@ -1,5 +1,8 @@
 import { useState } from "react"
 import FAQ from "../components/FAQ"
+import { motion } from 'framer-motion'
+import { fadeInUp, staggerContainer, viewportOnce } from '../util/useScrollAnimation'
+import {CalenderIcon} from '../util/Icons'
 
 export default function Appointment() {
   const [loading, setLoading] = useState(false)
@@ -27,8 +30,8 @@ export default function Appointment() {
   return (
     <div className="min-h-screen bg-cream font-['Inter','Outfit',sans-serif] px-6 py-24">
 <div className="max-w-6xl mx-auto px-6 pt-16 pb-12 text-center">
-      <span className="inline-block bg-teal-primary/10 text-teal-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">
-                Schedule a Visit
+      <span className="inline-flex items-center gap-2  bg-teal-primary/10 text-teal-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                <CalenderIcon  className="w-4 h-4" /> Schedule a Visit
           </span>
   <h1 className="text-4xl md:text-5xl font-bold text-slate-800 leading-tight">
     Compassionate Care for Your Beloved Pets
@@ -39,13 +42,17 @@ export default function Appointment() {
     to your pet’s health, comfort, and happiness.
   </p>
 
-  <div className="w-24 h-1 bg-teal-500 mx-auto mt-6 rounded-full"></div>
+  {/* <div className="w-24 h-1 bg-teal-500 mx-auto mt-6 rounded-full"></div> */}
 </div>
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         
 
         {/* ───── LEFT SIDE IMAGE WITH LAYER ───── */}
-        <div className="relative group rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
+        <motion.div   
+          variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce} className="relative group rounded-2xl overflow-hidden shadow-2xl shadow-black/20">
           <img
             src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=1200&q=80"
             alt="Veterinarian with pet"
@@ -59,7 +66,7 @@ export default function Appointment() {
           <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-coral/20 rounded-full blur-3xl pointer-events-none" />
 
           {/* Text Content Over Image */}
-          <div className="absolute bottom-10 left-10 right-10 text-white">
+          <motion.div variants={fadeInUp} className="absolute bottom-10 left-10 right-10 text-white">
             <span className="inline-block bg-white/20 backdrop-blur px-4 py-1 rounded-full text-sm font-medium mb-4">
               Premium Veterinary Care
             </span>
@@ -70,8 +77,8 @@ export default function Appointment() {
               Our experienced team ensures personalized treatment, modern diagnostics,
               and gentle handling for every pet we serve.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* ───── RIGHT SIDE FORM ───── */}
         <div className="relative bg-white rounded-2xl shadow-2xl shadow-gray-200/60 p-12">

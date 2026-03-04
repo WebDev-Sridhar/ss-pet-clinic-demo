@@ -1,16 +1,10 @@
 import { useState } from 'react'
 import { PawIcon, HeartIcon, EyeIcon, TargetIcon} from "../util/Icons"
+import { milestones, philosophyValues, missionImage, visionImage, storyImage } from '../data/about'
+import { motion } from 'framer-motion'
+import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, viewportOnce } from '../util/useScrollAnimation'
+import TextAnimation from '../components/TextAnimation'
 
-
-/* ─── Timeline data ─── */
-const milestones = [
-  { year: '2014', title: 'Founded', desc: 'S.S Pet Clinic opened its doors with a small but passionate team of 3 veterinarians.' },
-  { year: '2016', title: '24/7 Emergency Wing', desc: 'Launched round-the-clock emergency care, becoming the first in the district.' },
-  { year: '2018', title: 'Advanced Diagnostics', desc: 'Invested in digital X-ray, ultrasound, and in-house lab for rapid results.' },
-  { year: '2020', title: '10,000+ Patients', desc: 'Crossed the milestone of caring for over 10,000 happy pets and counting.' },
-  { year: '2022', title: 'Grooming & Wellness Spa', desc: 'Expanded with a luxury grooming studio and holistic wellness programmes.' },
-  { year: '2024', title: 'Community Leader', desc: 'Recognised as the top-rated veterinary clinic with 4.9★ across 5,000+ reviews.' },
-]
 
 /* ────────────────────── COMPONENT ────────────────────── */
 export default function About() {
@@ -19,7 +13,11 @@ export default function About() {
   return (
     <div className="min-h-screen bg-cream font-['Inter',_'Outfit',_sans-serif] overflow-x-hidden">
 
-      <section
+               <motion.section
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
         className="relative md:min-h-[80vh] min-h-[60vh] flex items-center justify-center text-center px-6 "
         style={{
           background: 'linear-gradient(135deg, #0F4C5C 0%, #17697E 40%, #1E8A9E 70%, #0F4C5C 100%)',
@@ -28,7 +26,7 @@ export default function About() {
         <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-white/5 blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-coral/10 blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-3xl mx-auto">
+        <motion.div variants={fadeInUp} className="relative z-10 max-w-3xl mx-auto">
           <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur text-white/90 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
             <HeartIcon className="w-4 h-4" /> Our Story
           </span>
@@ -42,7 +40,7 @@ export default function About() {
           <p className="mt-6 text-lg sm:text-xl text-white/80 max-w-xl mx-auto leading-relaxed">
             A decade of trust, compassion, and world-class veterinary medicine — built on the belief that every pet deserves the very best.
           </p>
-        </div>
+        </motion.div>
 
         {/* wave */}
         <div className="absolute bottom-0 left-0 right-0">
@@ -50,15 +48,15 @@ export default function About() {
             <path fill="#FFF8F0" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90.7L1440,96L1440,120L0,120Z" />
           </svg>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── Story Section (two-column) ── */}
-      <section className="bg-cream py-24 px-6">
+      <motion.section variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="bg-cream py-24 px-6">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
           {/* Image */}
-          <div className="group relative rounded-2xl overflow-hidden shadow-xl shadow-gray-200/60 transition-transform duration-500 hover:scale-[1.02]">
+          <motion.div variants={fadeInRight} className="group relative rounded-2xl overflow-hidden shadow-xl shadow-gray-200/60 transition-transform duration-500 hover:scale-[1.02]">
             <img
-              src="https://images.unsplash.com/photo-1629740067905-bd3f515aa739?w=700&h=525&fit=crop&q=80"
+              src={storyImage}
               alt="Veterinarian examining a pet in a bright clinic"
               className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -66,10 +64,11 @@ export default function About() {
             <div className="absolute top-4 right-4 bg-coral text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
               Est. 2014
             </div>
-          </div>
+          </motion.div>
 
           {/* Content */}
-          <div>
+          <motion.div
+            variants={fadeInLeft}>
             <span className="inline-block bg-teal-primary/10 text-teal-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">
               Who We Are
             </span>
@@ -96,27 +95,27 @@ export default function About() {
             >
               Get in Touch <span>→</span>
             </a>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── Mission & Vision ── */}
-      <section className="bg-cream-dark py-24 px-6">
-        <div className="max-w-6xl mx-auto text-center mb-14">
+      <motion.section variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="bg-cream-dark py-24 px-6">
+        <motion.div variants={fadeInUp} className="max-w-6xl mx-auto text-center mb-14">
           <span className="inline-block bg-coral/10 text-coral text-sm font-semibold px-4 py-1 rounded-full mb-4">
             What Drives Us
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-teal-primary">
             Mission &amp; Vision
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        <motion.div variants={fadeInUp} className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
           {/* Mission */}
           <div className="group relative bg-white rounded-2xl p-10 shadow-lg shadow-gray-200/50 transition-transform duration-500 hover:scale-105 overflow-hidden">
             {/* subtle bg image overlay */}
             <img
-              src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=400&fit=crop&q=60"
+              src={missionImage}
               alt=""
               className="absolute inset-0 w-full h-full object-cover opacity-[0.04] pointer-events-none"
             />
@@ -138,7 +137,7 @@ export default function About() {
           <div className="group relative bg-white rounded-2xl p-10 shadow-lg shadow-gray-200/50 transition-transform duration-500 hover:scale-105 overflow-hidden">
             {/* subtle bg image overlay */}
             <img
-              src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&h=400&fit=crop&q=60"
+              src={visionImage}
               alt=""
               className="absolute inset-0 w-full h-full object-cover opacity-[0.04] pointer-events-none"
             />
@@ -155,8 +154,8 @@ export default function About() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* ── Philosophy Section ── */}
       <section className="relative py-28 px-6 overflow-hidden">
@@ -176,16 +175,16 @@ export default function About() {
             <PawIcon className="w-4 h-4" /> Our Philosophy
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
-            &ldquo;We don&apos;t just treat animals.
+         <TextAnimation text="&ldquo;We don&apos;t just treat animals." />
             <br />
-            <span className="text-coral">We heal families.&rdquo;</span>
+            <span className="text-coral"><TextAnimation text = "We heal families.&rdquo;"/> </span>
           </h2>
           <p className="mt-8 text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
             Every diagnosis, every treatment, every gentle touch is guided by a single principle:
             your pet is someone&apos;s whole world, and we honour that bond with everything we do.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
-            {['Compassion First', 'Evidence-Based Care', 'Transparent Pricing', 'Lifelong Wellness'].map((v, i) => (
+            {philosophyValues.map((v, i) => (
               <span
                 key={i}
                 className="bg-white/10 backdrop-blur border border-white/10 text-white text-sm font-medium px-5 py-2.5 rounded-full transition-transform duration-300 hover:scale-110 hover:bg-white/20 cursor-default"
@@ -198,7 +197,7 @@ export default function About() {
       </section>
 
       {/* ── Horizontal Timeline ── */}
- <section className="bg-cream py-24 px-6 relative">
+ <motion.section variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="bg-cream py-24 px-6 relative">
   <div className="max-w-6xl mx-auto text-center mb-20">
     <span className="inline-block bg-teal-primary/10 text-teal-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">
       Our Journey
@@ -216,12 +215,13 @@ export default function About() {
     {/* Vertical Line */}
     <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-teal-primary/40 via-teal-primary to-coral/40 transform -translate-x-1/2 rounded-full" />
 
-    <div className="space-y-20">
+    <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="space-y-20">
       {milestones.map((m, i) => {
         const isLeft = i % 2 === 0
 
         return (
-          <div
+          <motion.div
+            variants={isLeft ? fadeInRight : fadeInLeft}
             key={i}
             className={`relative flex items-center ${
               isLeft ? "justify-start" : "justify-end"
@@ -260,12 +260,12 @@ export default function About() {
                 }}
               />
             </div>
-          </div>
+          </motion.div>
         )
       })}
-    </div>
+    </motion.div>
   </div>
-</section>
+</motion.section>
 
       {/* ── CTA Banner ── */}
       <section className="py-24 px-6">

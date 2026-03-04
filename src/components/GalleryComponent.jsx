@@ -1,16 +1,10 @@
 import { useNavigate } from "react-router-dom"
+import { galleryPreviewImages } from '../data/gallery'
+import { motion } from "framer-motion"
+import { scaleIn, staggerFast, viewportOnce } from "../util/useScrollAnimation"
 
 export default function GalleryComponent() {
   const navigate = useNavigate()
-
-  const images = [
-    "https://images.unsplash.com/photo-1558788353-f76d92427f16?w=600&q=80", // dog
-    "https://images.unsplash.com/photo-1574158622682-e40e69881006?w=600&q=80", // cat
-    "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&q=80", // vet clinic
-    "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&q=80", // grooming
-    "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&q=80", // owner + pet
-    "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80", // dog portrait
-  ]
 
   return (
     <section className="bg-cream py-24 px-6">
@@ -29,10 +23,19 @@ export default function GalleryComponent() {
         </p>
 
         {/* Masonry Preview Grid */}
-        <div className="mt-14 columns-2 sm:columns-3 lg:columns-4 gap-5 space-y-5">
-          {images.map((img, i) => (
-            <div
+        <motion.div
+  variants={staggerFast}
+  initial="hidden"
+  whileInView="visible"
+  viewport={viewportOnce}
+  className="mt-14 columns-2 sm:columns-3 lg:columns-4 gap-5 space-y-5"
+>
+          {galleryPreviewImages.map((img, i) => (
+            <motion.div
               key={i}
+                variants={scaleIn}
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.3 }}
               className="relative overflow-hidden rounded-2xl shadow-lg break-inside-avoid group cursor-pointer"
             >
               <img
@@ -41,9 +44,9 @@ export default function GalleryComponent() {
                 className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-500" />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* View More Button */}
         <div className="mt-16">

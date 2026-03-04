@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { NavLink, Link } from "react-router-dom"
+import { navLinks } from '../data/navbar'
 
 const PawIcon = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -21,8 +22,6 @@ const MapPinIcon = ({ className = 'w-5 h-5' }) => (
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-
-  const links = ["Home", "Services", "About", "Testimonials", "Contact"]
 
   const navStyle =
     "relative py-1 transition-colors duration-200 hover:text-teal-primary"
@@ -48,7 +47,7 @@ export default function Navbar() {
 
           {/* DESKTOP MENU */}
           <ul className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            {links.map((l) => (
+            {navLinks.map((l) => (
               <li key={l}>
                 <NavLink
                   to={l === "Home" ? "/" : `/${l.toLowerCase()}`}
@@ -109,7 +108,7 @@ export default function Navbar() {
             <hr className="mb-6" />
 
             <ul className="space-y-6 text-gray-700 font-medium">
-              {links.map((l) => (
+              {navLinks.map((l) => (
                 <li key={l}>
                   <NavLink
                     onClick={() => setOpen(false)}

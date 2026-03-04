@@ -4,46 +4,47 @@ const container = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.08
-    }
-  }
+      staggerChildren: 0.05,
+    },
+  },
 }
 
 const child = {
   hidden: {
     opacity: 0,
-    y: 40,
-    filter: "blur(8px)"
+    y: 10,
+    display: "inline-block",
   },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
+    display: "inline-block",
     transition: {
-      duration: 0.8,
-      ease: [0.25, 0.1, 0.25, 1] // luxury cubic-bezier
-    }
-  }
+      duration: 0.15,
+      ease: "easeOut",
+    },
+  },
 }
 
-export default function LuxuryText({ text, className }) {
+export default function TextAnimation({ text, className }) {
   return (
-    <motion.div
+    <motion.span
       variants={container}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className={`overflow-hidden ${className}`}
+      className={`inline ${className || ""}`}
+      style={{ overflow: "hidden" }}
     >
-      {text.split(" ").map((char, i) => (
+      {text.split("").map((char, i) => (
         <motion.span
           key={i}
           variants={child}
-          className="inline-block"
+          style={{ display: "inline-block", whiteSpace: "pre" }}
         >
-       {char + "\u00A0"}
+          {char === " " ? "\u00A0" : char}
         </motion.span>
       ))}
-    </motion.div>
+    </motion.span>
   )
 }

@@ -1,37 +1,7 @@
 import React, { useState } from "react"
-
-const faqs = [
-  {
-    question: "How do I book an appointment?",
-    answer:
-      "You can book an appointment online through our website or call us directly. Our team is available 24/7 to assist you."
-  },
-  {
-    question: "Do you provide emergency services?",
-    answer:
-      "Yes, we offer 24/7 emergency veterinary services to ensure your pet receives immediate care when needed."
-  },
-  {
-    question: "What types of pets do you treat?",
-    answer:
-      "We care for dogs, cats, and small animals including rabbits and birds. Contact us for specific inquiries."
-  },
-  {
-    question: "Are vaccinations available?",
-    answer:
-      "Absolutely. We provide complete vaccination programs tailored to your pet’s age and health condition."
-  },
-  {
-    question: "What are your operating hours?",
-    answer:
-      "Our clinic is open Monday to Saturday from 8 AM to 8 PM, and Sunday from 9 AM to 5 PM. Emergency services are available 24/7."
-  },
-  {
-    question: "Do you offer grooming services?",
-    answer:
-      "Yes, we have a full-service grooming salon to keep your pet looking and feeling their best."
-  }
-]
+import { faqs } from '../data/faq'
+import { motion } from "framer-motion"
+import { fadeInUp, staggerContainer, viewportOnce } from "../util/useScrollAnimation"
 
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null)
@@ -58,16 +28,22 @@ export default function FAQ() {
         </div>
 
         {/* FAQ Items */}
-        <div className="space-y-6">
+        <motion.div
+        variants={staggerContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={viewportOnce}
+        className="space-y-6">
           {faqs.map((faq, index) => {
             const isActive = activeIndex === index
 
             return (
-              <div
-                key={index}
-                className={`bg-white rounded-2xl shadow-lg shadow-gray-200/50 transition-all duration-300 ${
-                  isActive ? "ring-2 ring-teal-primary/30" : ""
-                }`}
+              <motion.div
+              variants={fadeInUp}
+              key={index}
+              onMouseEnter={() => setHovered(index)}
+              onMouseLeave={() => setHovered(null)}
+              className={`bg-white rounded-2xl shadow-lg shadow-gray-200/50 transition-all duration-300 ${isActive ? "ring-2 ring-teal-primary/30" : ""}`}
               >
                 <button
                   onClick={() => toggle(index)}
@@ -95,10 +71,10 @@ export default function FAQ() {
                     {faq.answer}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

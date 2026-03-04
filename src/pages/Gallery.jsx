@@ -1,57 +1,24 @@
-
-
-
 import { useState } from "react"
+import { galleryFilters, galleryImages } from '../data/gallery'
+import { motion } from "framer-motion"
+import { scaleIn, staggerFast, viewportOnce } from "../util/useScrollAnimation"
+import { GalleryIcon } from "../util/Icons"
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null)
   const [activeFilter, setActiveFilter] = useState("All")
 
-  const filters = ["All", "Dogs", "Cats", "Clinic", "Grooming", "Owners"]
-
-  const images = [
-    {
-      category: "Dogs",
-      src: "https://images.unsplash.com/photo-1558788353-f76d92427f16?w=800&q=80",
-    },
-    {
-      category: "Cats",
-      src: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      category: "Clinic",
-      src: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800&q=80",
-    },
-    {
-      category: "Grooming",
-      src: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800&q=80",
-    },
-    {
-      category: "Owners",
-      src: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&q=80",
-    },
-    {
-      category: "Dogs",
-      src: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80",
-    },
-    {
-      category: "Cats",
-      src: "https://images.unsplash.com/photo-1532386236358-a33d8a9434e3?q=80&w=1087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      category: "Clinic",
-      src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80",
-    },
-  ]
-
   const filteredImages =
     activeFilter === "All"
-      ? images
-      : images.filter((img) => img.category === activeFilter)
+      ? galleryImages
+      : galleryImages.filter((img) => img.category === activeFilter)
 
   return (
     <div className="min-h-screen bg-cream font-['Inter','Outfit',sans-serif] px-6 py-24">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto text-center">
+              <span className="inline-flex items-center gap-2  bg-teal-primary/10 text-teal-primary text-sm font-semibold px-4 py-1 rounded-full mb-4">
+                <GalleryIcon  className="w-4 h-4" /> Gallery
+          </span>
         <h1 className="text-4xl sm:text-5xl font-black text-teal-primary text-center">
           Our Pet Moments
         </h1>
@@ -61,7 +28,7 @@ export default function Gallery() {
 
         {/* Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mt-10">
-          {filters.map((filter, i) => (
+          {galleryFilters.map((filter, i) => (
             <button
               key={i}
               onClick={() => setActiveFilter(filter)}
@@ -77,10 +44,17 @@ export default function Gallery() {
         </div>
 
         {/* Masonry Grid */}
-        <div className="mt-16 columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+      <motion.div
+  variants={staggerFast}
+  initial="hidden"
+  whileInView="visible"
+  viewport={viewportOnce} className="mt-16 columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
           {filteredImages.map((img, i) => (
-            <div
+            <motion.div
               key={i}
+              variants={scaleIn}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
               className="relative overflow-hidden rounded-2xl shadow-lg cursor-pointer break-inside-avoid"
               onClick={() => setSelectedImage(img.src)}
             >
@@ -89,9 +63,9 @@ export default function Gallery() {
                 alt="Gallery"
                 className="w-full object-cover transition-transform duration-700 hover:scale-110"
               />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Modal Preview */}
