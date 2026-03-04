@@ -50,7 +50,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           agent_id: process.env.RETELL_AGENT_ID,
           chat_id: chatId,
-          message,
+          content: message, // required field name
         }),
       },
     );
@@ -68,13 +68,17 @@ export default async function handler(req, res) {
     // log the full object for debugging; remove or lower log level in production
     console.log("retell.ai completion response:", data);
 
-    // try to pick the reply from a few possible fields depending on API shape
-    const reply =
-      data?.reply ||
-      data?.response?.text ||
-      data?.output?.text ||
-      data?.message ||
-      "No response from AI";
+    // extract the agent's reply from returned messages array
+    let reply = "No response from AI";
+    if (Array.isArray(data.messages) && data.messages.length) {
+      const agentMsg =
+        data.messages
+          .slice()
+          .reverse()
+          .find((m) => m.role === "agent") ||
+        data.messages[data.messages.length - 1];
+      if (agentMsg && agentMsg.content) reply = agentMsg.content;
+    }
 
     const returnedChatId = chatId; // we always have it now
 
