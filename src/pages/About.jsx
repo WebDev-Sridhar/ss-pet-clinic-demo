@@ -248,18 +248,17 @@ export default function About() {
               </p>
             </div>
 
-            {/* Dot */}
-            <div className="absolute left-1/2 transform -translate-x-1/2">
-              <div
-                className={`w-6 h-6 rounded-full border-4 border-white shadow-lg transition-all duration-300 ${
-                  hoveredMilestone === i ? "scale-125" : ""
-                }`}
-                style={{
-                  backgroundColor:
-                    i % 2 === 0 ? "#0F4C5C" : "#FF6B6B",
-                }}
-              />
-            </div>
+     {/* Dot */}
+<div className="absolute left-1/2 -translate-x-1/2 top-2 md:top-1/2 md:-translate-y-1/2">
+  <div
+    className={`w-6 h-6 rounded-full border-4 border-white shadow-lg transition-all duration-300 ${
+      hoveredMilestone === i ? "scale-125" : ""
+    }`}
+    style={{
+      backgroundColor: i % 2 === 0 ? "#0F4C5C" : "#FF6B6B",
+    }}
+  />
+</div>
           </motion.div>
         )
       })}
