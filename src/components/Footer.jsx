@@ -45,7 +45,7 @@ const Footer = () => {
        <>
              {/* ── Footer ── */}
       <footer className="bg-teal-dark text-white pt-16 pb-8 px-6">
-        <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <span className="bg-white/10 p-2 rounded-xl">
@@ -58,7 +58,7 @@ const Footer = () => {
             </p>
             {/* Social Links */}
 <div className="mt-6">
-  <p className="text-sm font-semibold text-teal-primary mb-3 text-white ">
+  <p className="text-sm font-semibold  mb-3 text-white/40 ">
     Follow Us
   </p>
 
@@ -78,6 +78,7 @@ const Footer = () => {
     ))}
   </div>
 </div>
+
           </div>
           
 
@@ -91,6 +92,26 @@ const Footer = () => {
               ))}
             </ul>
           </div>
+          <div>
+    <h4 className="font-bold text-sm uppercase tracking-wider text-white/40 mb-4">
+    Policies
+  </h4>
+  <ul className="space-y-2 text-sm text-white/70">
+    <li>
+      <a href="/privacy-policy" className="hover:text-coral transition-colors duration-200">Privacy Policy</a>
+    </li>
+    <li>
+      <a href="/terms-of-service" className="hover:text-coral transition-colors duration-200">Terms of Service</a>
+    </li>
+        <li>
+      <a href="/return-refund-policy" className="hover:text-coral transition-colors duration-200">Return & Refund Policy</a>
+    </li>
+    <li>
+      <a href="/cookie-policy" className="hover:text-coral transition-colors duration-200">Cookie Policy</a>
+    </li>
+  </ul>
+
+</div>
 
           <div>
             <h4 className="font-bold text-sm uppercase tracking-wider text-white/40 mb-4">Working Hours</h4>
