@@ -84,10 +84,12 @@ export default function Home() {
               </Link>
               <a
                 href="tel:+911234567890"
-                className="group inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white font-semibold text-lg px-8 py-4 rounded-2xl transition-transform duration-300 hover:scale-110 hover:bg-white/20"
+                className=" group inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white font-semibold text-lg px-8 py-4 rounded-2xl transition-transform duration-300 hover:scale-110 hover:bg-white/20"
               >
-                <BoltIcon className="w-5 h-5 text-coral transition-transform duration-300 group-hover:scale-125" />
-                Emergency Care
+<span className="group-hover:scale-125 transition-transform duration-300">
+  <BoltIcon className="badge-icon w-5 h-5 text-coral" />
+</span>               
+<span className="badge-text">Emergency Care</span>
               </a>
             </div>
           </motion.div>

@@ -21,3 +21,67 @@ body {
   background-color: #FFF8F0;
   color: #1a1a1a;
 }
+
+.badge-icon {
+  display: inline-block;
+  transform-origin: center;
+  animation: electricShock 3s infinite;
+  will-change: transform, filter;
+}
+
+/* ⚡ ELECTRIC EFFECT */
+@keyframes electricShock {
+
+  /* Idle */
+  0%, 65%, 100% {
+    transform: translate(0) scale(1);
+    filter: drop-shadow(0 0 0px rgba(255, 127, 80, 0));
+  }
+
+  /* Quick power surge */
+  10% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(255, 127, 80, 0.8));
+  }
+
+  /* Micro vibration burst */
+  15% { transform: translate(-2px, 1px) rotate(-5deg); }
+  18% { transform: translate(2px, -1px) rotate(5deg); }
+  21% { transform: translate(-3px, 2px) rotate(-6deg); }
+  24% { transform: translate(3px, -2px) rotate(6deg); }
+  27% { transform: translate(-2px, 1px) rotate(-4deg); }
+  30% { transform: translate(2px, -1px) rotate(4deg); }
+
+  /* Snap back */
+  35% {
+    transform: translate(0) scale(1);
+    filter: drop-shadow(0 0 4px rgba(255, 127, 80, 0.5));
+  }
+
+  /* Glow fades */
+  45% {
+    filter: drop-shadow(0 0 0px rgba(255, 127, 80, 0));
+  }
+}
+/* TEXT EARTHQUAKE */
+.badge-text {
+  display: inline-block;
+  animation: textAfterShock 3s infinite;
+}
+
+@keyframes textAfterShock {
+
+  0%, 40%, 100% {
+    transform: translate(0);
+  }
+
+  45% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1.5px, 1.5px); }
+  55% { transform: translate(1.5px, -1.5px); }
+  60% { transform: translate(-1px, 1px); }
+  65% { transform: translate(0); }
+}
+.badge-icon,
+.badge-text {
+  will-change: transform;
+}
