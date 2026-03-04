@@ -43,7 +43,9 @@ const AiReceptionist = ({ onFillAppointment }) => {
   // Detect appointment info (simple date/time pattern) and auto-fill
   const renderAppointmentButton = (msg) => {
     const dateTimeRegex = /\b(\d{1,2}\/\d{1,2}\/\d{2,4})\b.*\b(\d{1,2}:\d{2})\b/;
-    if (dateTimeRegex.test(msg.content)) {
+    if (dateTimeRegex.test(msg.content)) 
+        console.log(msg.content)
+        {
       return (
         <button
           className="mt-1 px-2 py-1 bg-teal-primary text-white text-xs rounded"
