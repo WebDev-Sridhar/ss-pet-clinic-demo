@@ -3,14 +3,20 @@ import FAQ from "../components/FAQ"
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer, viewportOnce } from '../util/useScrollAnimation'
 import {CalenderIcon} from '../util/Icons'
+import { useLocation } from "react-router-dom"
 
-export default function Appointment() {
+export default function Appointment({data}) {
+  const location = useLocation()
+const selectedService = location.state?.service || ""
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
+    date: "",
+    petName: "",
+    service: selectedService || "",
     date: "",
   })
 
@@ -22,7 +28,15 @@ export default function Appointment() {
     setTimeout(() => {
       setLoading(false)
       setSuccess(true)
-      e.target.reset(); // clears all inputs
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        petName: "",
+        service: "",
+        date: "",
+      })
 
     }, 2000)
   }
@@ -97,68 +111,130 @@ export default function Appointment() {
             and our team will confirm your visit shortly.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-10 space-y-10">
+         <form onSubmit={handleSubmit} className="mt-10 space-y-10">
 
-            {/* Floating Inputs */}
-            <div className="relative">
-              <input
-                type="text"
-                required
-                placeholder=" "
-                className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
-              />
-              <label className="absolute left-0 top-3 text-gray-400 text-sm transition-all peer-focus:-top-5 peer-focus:text-xs peer-focus:text-teal-primary peer-valid:-top-5 peer-valid:text-xs">
-                Your Name
-              </label>
-            </div>
+  {/* Owner Name */}
+  <div className="relative">
+    <input
+      type="text"
+      value={formData.name}
+      onChange={(e) => setFormData({...formData, name: e.target.value})}
+      required
+      placeholder=" "
+      className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
+    />
+    <label className="absolute left-0 top-3 text-gray-400 text-sm transition-all 
+      peer-focus:-top-5 peer-focus:text-xs peer-focus:text-teal-primary 
+      peer-valid:-top-5 peer-valid:text-xs">
+      Your Name
+    </label>
+  </div>
 
-            <div className="relative">
-              <input
-                type="email"
-                required
-                placeholder=" "
-                className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
-              />
-              <label className="absolute left-0 top-3 text-gray-400 text-sm transition-all peer-focus:-top-5 peer-focus:text-xs peer-focus:text-teal-primary peer-valid:-top-5 peer-valid:text-xs">
-                Email Address
-              </label>
-            </div>
+  {/* Phone */}
+  <div className="relative">
+    <input
+      type="tel"
+      value={formData.phone}
+      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+      required
+      placeholder=" "
+      className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
+    />
+    <label className="absolute left-0 top-3 text-gray-400 text-sm transition-all 
+      peer-focus:-top-5 peer-focus:text-xs peer-focus:text-teal-primary 
+      peer-valid:-top-5 peer-valid:text-xs">
+      Phone Number
+    </label>
+  </div>
 
-            <div className="relative">
-              <input
-                type="tel"
-                required
-                placeholder=" "
-                className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
-              />
-              <label className="absolute left-0 top-3 text-gray-400 text-sm transition-all peer-focus:-top-5 peer-focus:text-xs peer-focus:text-teal-primary peer-valid:-top-5 peer-valid:text-xs">
-                Phone Number
-              </label>
-            </div>
+  {/* Email */}
+  <div className="relative">
+    <input
+      type="email"
+      value={formData.email}
+      onChange={(e) => setFormData({...formData, email: e.target.value})}
+      required
+      placeholder=" "
+      className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
+    />
+    <label className="absolute left-0 top-3 text-gray-400 text-sm transition-all 
+      peer-focus:-top-5 peer-focus:text-xs peer-focus:text-teal-primary 
+      peer-valid:-top-5 peer-valid:text-xs">
+      Email Address
+    </label>
+  </div>
 
-            <div className="relative">
-              <input
-                type="date"
-                required
-                className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
-              />
-              <label className="absolute left-0 -top-5 text-xs text-gray-400">
-                Preferred Date
-              </label>
-            </div>
+  {/* Pet Name */}
+  <div className="relative">
+    <input
+      type="text"
+      value={formData.petName}
+      onChange={(e) => setFormData({...formData, petName: e.target.value})}
+      required
+      placeholder=" "
+      className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
+    />
+    <label className="absolute left-0 top-3 text-gray-400 text-sm transition-all 
+      peer-focus:-top-5 peer-focus:text-xs peer-focus:text-teal-primary 
+      peer-valid:-top-5 peer-valid:text-xs">
+      Pet Name
+    </label>
+  </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-coral text-white font-bold py-4 rounded-2xl shadow-xl shadow-coral/30 transition-transform duration-300 hover:scale-105 flex items-center justify-center"
-            >
-              {loading ? (
-                <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin" />
-              ) : (
-                "Confirm Appointment →"
-              )}
-            </button>
-          </form>
+  {/* Service Selection */}
+  <div className="relative">
+    <select
+      required
+      value={formData.service}
+      onChange={(e) => setFormData({...formData, service: e.target.value})}
+      className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 bg-transparent"
+    >
+      <option value="" disabled selected hidden></option>
+      <option>General Checkup</option>              
+      <option>Preventive Care</option>              
+      <option>Vaccination</option>
+      <option>Surgery Consultation</option>
+      <option>Emergency Service</option>
+      <option>Dental Care</option>
+      <option>Grooming</option>
+      <option>Other</option>
+    </select>
+    <label className="absolute left-0 -top-4 text-sm text-gray-400">
+      Select Service
+    </label>
+  </div>
+
+  {/* Preferred Date */}
+  <div className="relative">
+    <input
+      type="date"
+      value={formData.date}
+      onChange={(e) => setFormData({...formData, date: e.target.value})}
+      required
+      className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
+    />
+    <label className="absolute left-0 -top-5 text-xs text-gray-400">
+      Preferred Date
+    </label>
+  </div>
+
+  {/* Preferred Time */}
+  {/* <div className="relative">
+    <input
+      type="time"
+      required
+      className="peer w-full border-b-2 border-gray-300 focus:border-teal-primary outline-none py-3 transition-all"
+    />
+    <label className="absolute left-0 -top-5 text-xs text-gray-400">
+      Preferred Time
+    </label>
+  </div> */}
+
+
+
+  {/* Submit */}
+
+</form>
         </div>
                   <div className=" text-center lg:col-span-2">
            <FAQ/>

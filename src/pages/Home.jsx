@@ -329,12 +329,12 @@ className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             <p className="mt-4 text-white/70 max-w-lg mx-auto">
               {ctaBanner.description}
             </p>
-            <a
-              href="#contact"
+            <Link
+              to={'/appointment'}
               className="mt-8 inline-flex items-center gap-2 bg-coral text-white font-bold text-lg px-10 py-4 rounded-2xl shadow-xl shadow-coral/30 transition-transform duration-300 hover:scale-110"
             >
               {ctaBanner.buttonText} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

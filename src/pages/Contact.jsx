@@ -14,6 +14,32 @@ const contactIconMap = {
 
 export default function Contact() {
   const [hovered, setHovered] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLoading(true)
+
+    setTimeout(() => {
+      setLoading(false)
+      setSuccess(true)
+  
+    }, 2000)
+  }
 
   return (
     <div className="relative min-h-screen bg-cream font-['Inter','Outfit',sans-serif] overflow-hidden">
@@ -127,14 +153,29 @@ export default function Contact() {
           }}
         >
           <h2 className="text-3xl font-bold text-teal-primary mb-6">
-            Book an Appointment
+           Have a Question?
           </h2>
 
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Your Name"
+                required
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-primary/40 transition"
+              />
+            </div>
+                  <div>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Phone Number"
+                required
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-primary/40 transition"
               />
             </div>
@@ -142,33 +183,40 @@ export default function Contact() {
             <div>
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Email Address"
+                required
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-primary/40 transition"
               />
             </div>
 
-            <div>
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-primary/40 transition"
-              />
-            </div>
+      
 
             <div>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
                 rows="4"
                 placeholder="Tell us about your pet..."
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-primary/40 transition resize-none"
               />
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-coral text-white font-bold py-4 rounded-2xl shadow-lg shadow-coral/30 transition-transform duration-300 hover:scale-105"
-            >
-              Send Message →
-            </button>
+         <button
+    type="submit"
+    disabled={loading}
+    className="w-full bg-coral text-white font-bold py-4 rounded-2xl shadow-xl shadow-coral/30 transition-transform duration-300 hover:scale-105 flex items-center justify-center"
+  >
+    {loading ? (
+      <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin" />
+    ) : (
+      "Send Message →"
+    )}
+  </button>
           </form>
 
         </motion.div>
@@ -176,11 +224,38 @@ export default function Contact() {
    <FAQ/>
 </div>
       </motion.div>
+       {/* ───── SUCCESS MODAL ───── */}
+      {success && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-6">
+          <div className="bg-white rounded-2xl p-12 text-center shadow-2xl max-w-md w-full animate-[fadeIn_.3s_ease-in-out]">
+            <h3 className="text-2xl font-bold text-teal-primary">
+              Message Received!
+            </h3>
+            <p className="mt-4 text-gray-500">
+              Thank you for your message {formData.name}. Our team will contact you shortly.
+            </p>
+            <button
+              onClick={() => {
+                setSuccess(false);
+                setFormData({
+                  name: "",
+                  email: "",
+                  phone: "",
+                  message: "",
+                });
+              }}
+              className="mt-8 bg-coral text-white px-8 py-3 rounded-xl font-semibold hover:scale-105 transition-transform"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Floating Emergency Button */}
       <a
         href="tel:+919876543210"
-        className="fixed bottom-6 right-6 bg-coral text-white p-5 rounded-full shadow-2xl shadow-coral/40 transition-transform duration-300 hover:scale-110"
+        className="fixed bottom-6 right-6 bg-coral text-white p-5 rounded-full shadow-2xl shadow-coral/40 transition-transform duration-300 hover:scale-110 z-10"
       >
         <PhoneIcon className="w-6 h-6" />
       </a>

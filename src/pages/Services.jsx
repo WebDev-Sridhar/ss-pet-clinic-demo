@@ -1,6 +1,7 @@
 import {ServiceIcon, CheckIcon} from '../util/Icons'
 import FAQ from '../components/FAQ'
 import { services } from '../data/services'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { fadeInUp, fadeInRight, fadeInLeft, staggerContainer, viewportOnce} from '../util/useScrollAnimation'
 
@@ -108,12 +109,13 @@ export default function Services() {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href="/contact"
-                    className="inline-flex items-center gap-2 mt-8 bg-coral text-white font-bold px-7 py-3 rounded-2xl shadow-lg shadow-coral/25 transition-transform duration-300 hover:scale-105"
-                  >
-                    Book This Service <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                  </a>
+             <Link
+  to="/appointment"
+  state={{ service: s.title }}
+  className="inline-flex items-center gap-2 mt-8 bg-coral text-white font-bold px-7 py-3 rounded-2xl shadow-lg shadow-coral/25 transition-transform duration-300 hover:scale-105"
+>
+  Book This Service →
+</Link>
           </motion.div>
         </motion.div>
       )
@@ -140,12 +142,12 @@ export default function Services() {
             <p className="mt-4 text-white/70 max-w-lg mx-auto">
               Our experienced veterinarians will guide you. Book a consultation and we&apos;ll create a personalised care plan.
             </p>
-            <a
-              href="/contact"
+            <Link
+              to={'/appointment'}
               className="mt-8 inline-flex items-center gap-2 bg-coral text-white font-bold text-lg px-10 py-4 rounded-2xl shadow-xl shadow-coral/30 transition-transform duration-300 hover:scale-110"
             >
               Schedule a Consultation <span>&rarr;</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

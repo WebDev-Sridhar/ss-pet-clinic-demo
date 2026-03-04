@@ -26,7 +26,7 @@ export const services = [
     img: 'https://images.unsplash.com/photo-1596272875729-ed2ff7d6d9c5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
-    title: 'Surgery',
+    title: 'Surgery Consultation',
     tagline: 'Precision. Safety. Recovery.',
     desc: 'Our state-of-the-art surgical suite is equipped with advanced monitoring and anaesthesia systems. From routine spay/neuter procedures to complex soft-tissue surgeries, our board-trained surgeons operate with the highest standards of care.',
     features: [

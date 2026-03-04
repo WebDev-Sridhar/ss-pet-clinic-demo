@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { PawIcon, HeartIcon, EyeIcon, TargetIcon} from "../util/Icons"
 import { milestones, philosophyValues, missionImage, visionImage, storyImage } from '../data/about'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, viewportOnce } from '../util/useScrollAnimation'
 import TextAnimation from '../components/TextAnimation'
+import { i } from 'framer-motion/client'
 
 
 /* ────────────────────── COMPONENT ────────────────────── */
@@ -89,12 +91,12 @@ export default function About() {
               Today, over <span className="font-semibold text-teal-primary">15,000 happy pets</span> and
               their families trust S.S Pet Clinic for everything from routine wellness to life-saving emergencies.
             </p>
-            <a
-              href="/#contact"
+            <Link
+              to={'/contact'}
               className="inline-flex items-center gap-2 mt-8 bg-coral text-white font-bold px-7 py-3 rounded-2xl shadow-lg shadow-coral/25 transition-transform duration-300 hover:scale-105"
             >
               Get in Touch <span>→</span>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </motion.section>
@@ -284,12 +286,12 @@ export default function About() {
             <p className="mt-4 text-white/70 max-w-lg mx-auto">
               Join the thousands of families who trust S.S Pet Clinic for compassionate, premium veterinary care.
             </p>
-            <a
-              href="/#contact"
+            <Link
+              to={'/appointment'}
               className="mt-8 inline-flex items-center gap-2 bg-coral text-white font-bold text-lg px-10 py-4 rounded-2xl shadow-xl shadow-coral/30 transition-transform duration-300 hover:scale-110"
             >
               Book Your Visit <span>→</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
