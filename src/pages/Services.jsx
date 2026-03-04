@@ -49,12 +49,14 @@ export default function Services() {
       </motion.section>
 
       {/* ── Service Sections ── */}
-      <section className="bg-cream py-20 px-6">
-        <motion.div
-        variants={staggerContainer}
+      <motion.section
+       variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
+       className="bg-cream py-20 px-6">
+        <motion.div
+       variants={fadeInUp}
         className="max-w-6xl mx-auto flex flex-col gap-20">
           {services.map((s, i) => {
             const isReversed = i % 2 !== 0
@@ -66,9 +68,9 @@ export default function Services() {
                 className={`group flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-10 items-center`}
               >
                 {/* Image */}
-               <motion.div
+               <div
                 key={i}
-                variants={fadeInLeft}className="w-full lg:w-1/2">
+                className="w-full lg:w-1/2">
                   <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-gray-200/60">
                     <img
                       src={s.img}
@@ -81,10 +83,10 @@ export default function Services() {
                       {String(i + 1).padStart(2, '0')}
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Content */}
-                <motion.div variants={fadeInRight} className="w-full lg:w-1/2">
+                <div  className="w-full lg:w-1/2">
                   <span className="inline-block bg-teal-primary/10 text-teal-primary text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-3">
                     {s.tagline}
                   </span>
@@ -110,12 +112,12 @@ export default function Services() {
                   >
                     Book This Service <span className="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                   </a>
-                </motion.div>
+                </div>
               </div>
             )
           })}
         </motion.div>
-      </section>
+      </motion.section>
       <FAQ/>
 
       {/* ── CTA Banner ── */}
