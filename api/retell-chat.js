@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   try {
     const { message } = req.body;
 
-    // Only one endpoint to create chat with user message
+    // Send message to AI
     const response = await fetch("https://api.retellai.com/create-chat", {
       method: "POST",
       headers: {
@@ -13,17 +13,17 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         agent_id: process.env.RETELL_AGENT_ID,
-        message: message,  // send user message directly
+        message,          // <-- send the user message
+        metadata: {},
       }),
     });
 
-    // Check if response is JSON
     const text = await response.text();
     let data;
     try {
       data = JSON.parse(text);
-    } catch (err) {
-      console.error("Non-JSON response from Retell:", text);
+    } catch {
+      console.error("Non-JSON response:", text);
       return res.status(500).json({ error: "Invalid response from Retell API" });
     }
 
@@ -31,8 +31,8 @@ export default async function handler(req, res) {
     const chat_id = data?.chat_id;
 
     return res.status(200).json({ reply, chat_id });
-  } catch (error) {
-    console.error("Server error:", error);
+  } catch (err) {
+    console.error("Server error:", err);
     return res.status(500).json({ error: "Internal server error" });
   }
 }
