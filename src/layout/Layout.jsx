@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import ScrollToTop from "../components/ScrollToTop"
+import AiReceptionist from "../components/AiReceptionist"
 
 const Layout = () => {
   return (
@@ -14,6 +15,7 @@ const Layout = () => {
       </main>
 
       <Footer />
+        <AiReceptionist />
     </>
   )
 }
