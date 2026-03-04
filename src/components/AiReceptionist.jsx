@@ -1,37 +1,36 @@
-import { useState } from "react"
-import { sendMessage } from "../util/chatApi"
-import { PawIcon } from "../util/Icons"
-
+import { useState } from "react";
+import { sendMessage } from "../util/chatApi";
+import { PawIcon } from "../util/Icons";
 
 const AiReceptionist = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    {
-      role: "assistant",
-      content:
-        "Hi, I'm Sunny 🐾 How can I help your pet today?",
-    },
-  ])
-  const [input, setInput] = useState("")
-  const [loading, setLoading] = useState(false)
+    { role: "assistant", content: "Hi, I'm Sunny 🐾 How can I help your pet today?" },
+  ]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
-    if (!input.trim()) return
+    if (!input.trim()) return;
 
-    const userMessage = { role: "user", content: input }
-    setMessages((prev) => [...prev, userMessage])
-    setInput("")
-    setLoading(true)
+    const userMessage = { role: "user", content: input };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
+    setLoading(true);
 
-    const reply = await sendMessage(input)
-
-    setMessages((prev) => [
-      ...prev,
-      { role: "assistant", content: reply },
-    ])
-
-    setLoading(false)
-  }
+    try {
+      const reply = await sendMessage(input);
+      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+    } catch (err) {
+      console.error(err);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "Sorry, something went wrong." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -40,7 +39,7 @@ const AiReceptionist = () => {
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 right-6 bg-teal-primary text-white p-4 rounded-full shadow-xl shadow-teal-primary/40 hover:scale-110 transition-transform z-50"
       >
-       <PawIcon className="w-6 h-6" />
+        <PawIcon className="w-6 h-6" />
       </button>
 
       {/* Chat Window */}
@@ -82,17 +81,14 @@ const AiReceptionist = () => {
               placeholder="Type your message..."
               className="flex-1 px-3 py-3 outline-none text-sm"
             />
-            <button
-              onClick={handleSend}
-              className="bg-teal-primary text-white px-4"
-            >
+            <button onClick={handleSend} className="bg-teal-primary text-white px-4">
               Send
             </button>
           </div>
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default AiReceptionist
+export default AiReceptionist;
