@@ -335,15 +335,10 @@ className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             Don't take our word for it — hear from the families we serve every day.
           </p>
 
-          <motion.div 
-            variants={staggerContainer}
-  initial="hidden"
-  whileInView="visible"
-  viewport={viewportOnce}
+          <div 
           className="mt-14 grid md:grid-cols-2 gap-8">
             {homeTestimonials.map((t, i) => (
-              <motion.div
-              variants={fadeInUp}
+              <div
                 key={i}
                 className="group relative bg-white/60 backdrop-blur-md border border-white/40 rounded-2xl p-8 text-left shadow-lg shadow-gray-200/40 transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
               >
@@ -396,9 +391,9 @@ className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <p className="text-xs text-gray-400">{t.role}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
            <div className="mt-16">
           <button
             onClick={() => navigate("/testimonials")}
