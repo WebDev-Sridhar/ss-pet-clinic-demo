@@ -267,7 +267,7 @@ className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20 px-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-20 px-6"
         >
 
           {specialties.map((item, i) => (
