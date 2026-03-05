@@ -1,6 +1,6 @@
 // src/data/gallery.js
 
-export const galleryFilters = ['All', 'Dogs', 'Cats', 'Clinic', 'Grooming', 'Owners']
+export const galleryFilters = ['All','Clinic', 'Dogs', 'Cats', 'Grooming', 'Owners']
 
 /* ─── Full Gallery (Gallery page) ─── */
 export const galleryImages = [
