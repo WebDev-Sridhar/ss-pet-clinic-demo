@@ -280,7 +280,7 @@ className="grid grid-cols-2 lg:grid-cols-4 gap-6">
 
               <img
                 src={item.img}
-                className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-66 object-cover transition-transform duration-700 group-hover:scale-110"
               />
 
 {/* Hover Overlay */}
