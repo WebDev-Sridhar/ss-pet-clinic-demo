@@ -78,7 +78,7 @@ export default function AboutSection() {
 
         {/* Section Header */}
 
-        <motion.div variants={fadeInUp} className="text-center max-w-6xl mx-auto">
+        <div  className="text-center max-w-6xl mx-auto">
           <span className="bg-teal-primary/10 text-teal-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
           About Our Clinic
           </span>
@@ -90,13 +90,12 @@ export default function AboutSection() {
           <p className="mt-4 text-gray-500 leading-relaxed">
          Started in 2004, as a small practice in 10×10 space with versatile mobile visits to responsible pet owners due to its commitment, this hospital has grown into a referral setup with all advanced and essential state of art facilities. Now we have two branches with its own facilities of IDEXX Lab, ECG, Surgical suite, Inpatient facilities, Spa, Vital monitors, closed oxygen supply, separate infectious ward and separate digital medical records. There is a centralised appointment system to fix the doctor in charge of duty of their own.
           </p>
-        </motion.div>
+        </div>
 
 
         {/* Image Slider */}
 
-        <motion.div
-          variants={fadeInUp}
+        <div
           className="relative mt-16 max-w-4xl mx-auto"
         >
 
@@ -137,7 +136,7 @@ export default function AboutSection() {
             ›
           </button>
 
-        </motion.div>
+        </div>
 
         <h3 className="mt-12 text-2xl font-bold text-teal-primary text-center">
           Our Specialties
