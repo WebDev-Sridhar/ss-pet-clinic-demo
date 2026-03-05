@@ -294,12 +294,12 @@ className="grid grid-cols-2 lg:grid-cols-4 gap-6">
   >
 
     {/* Title */}
-    <h3 className="font-bold text-xl px-4 py-4 mb-4">
+    <h3 className="font-bold text-xl px-4 py-4 mb-4 text-center">
       {item.title}
     </h3>
 
     {/* Description */}
-    <p className="text-sm text-white/90 px-4 pb-6">
+    <p className="text-sm text-white/90 px-4 pb-6 text-center">
       {item.desc}
     </p>
 
