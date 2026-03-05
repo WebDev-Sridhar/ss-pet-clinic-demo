@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { sendMessage } from "../util/chatApi";
-import { PawIcon } from "../util/Icons";
+import { BotIcon } from "../util/Icons";
 
 const AiReceptionist = () => {
   const [open, setOpen] = useState(false);
+  const chatRef = useRef(null);
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hi, I'm Sunny 🐾 How can I help your pet today?",
+      content: "Hi, I'm Dara 🐾 How can I help your pet today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -20,6 +21,17 @@ const AiReceptionist = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
   useEffect(scrollToBottom, [messages, loading]);
+
+  // close chat when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (open && chatRef.current && !chatRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -50,11 +62,12 @@ const AiReceptionist = () => {
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 right-6 bg-teal-primary text-white p-4 rounded-full shadow-xl shadow-teal-primary/40 hover:scale-110 transition-transform z-50"
       >
-        <PawIcon className="w-6 h-6" />
+        <BotIcon className="w-6 h-6" />
       </button>
 
       {/* Chat Window */}
       <div
+        ref={chatRef}
         className={`fixed bottom-24 right-6 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl overflow-hidden z-50 border border-gray-100 transform transition-all duration-300 ${
           open
             ? "translate-y-0 opacity-100"
@@ -63,7 +76,7 @@ const AiReceptionist = () => {
       >
         {/* Header */}
         <div className="bg-gradient-to-r from-teal-primary to-coral px-4 py-3 text-white font-semibold">
-          Sunny – AI Receptionist
+          Dara – AI Receptionist
         </div>
 
         {/* Messages */}
@@ -96,6 +109,12 @@ const AiReceptionist = () => {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleSend();
+              }
+            }}
             placeholder="Type your message..."
             className="flex-1 px-3 py-3 outline-none text-sm"
           />

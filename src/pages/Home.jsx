@@ -8,7 +8,7 @@ import Counter from '../components/Counter'
 import TextAnimation from '../components/TextAnimation'
 import FAQ from '../components/FAQ'
 import { heroContent, stats, homeServices, homeTestimonials, ctaBanner } from '../data/homeData'
-// ExampleSection.jsx
+import AboutSection from '../components/AboutSection'
 
 import { motion } from "framer-motion"
 import {
@@ -162,6 +162,8 @@ className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           </motion.div>
         </div>
       </section>
+
+      <AboutSection/>
 
       {/* ── Services ── */}
              <section className="bg-cream-dark py-24 px-6">

@@ -255,9 +255,9 @@ export default function Contact() {
       {/* Floating Emergency Button */}
       <a
         href="tel:+919876543210"
-        className="fixed bottom-6 right-6 bg-coral text-white p-5 rounded-full shadow-2xl shadow-coral/40 transition-transform duration-300 hover:scale-110 z-10"
+        className="fixed bottom-24 right-6 bg-coral text-white p-5 rounded-full shadow-2xl shadow-coral/40 transition-transform duration-300 hover:scale-110 z-10"
       >
-        <PhoneIcon className="w-6 h-6" />
+        <PhoneIcon className="w-5 h-5" />
       </a>
 
     </div>
