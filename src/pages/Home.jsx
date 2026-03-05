@@ -239,12 +239,12 @@ className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                   </div>
                   <h3 className="text-xl font-bold text-teal-primary">{s.title}</h3>
                   <p className="mt-2 text-gray-500 text-sm leading-relaxed">{s.desc}</p>
-                  <a
-                    href="#contact"
+                  <Link
+                    to="/services"
                     className="inline-flex items-center gap-1 mt-5 text-coral font-semibold text-sm transition-transform duration-300 group-hover:translate-x-1"
                   >
                     Learn More <span>→</span>
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             ))}
