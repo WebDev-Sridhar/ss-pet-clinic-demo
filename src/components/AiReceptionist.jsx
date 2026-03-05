@@ -16,6 +16,11 @@ const AiReceptionist = () => {
 
   const messagesEndRef = useRef(null);
 
+  // drag-to-close state
+  const startYRef = useRef(0);
+  const [dragY, setDragY] = useState(0);
+  const [dragging, setDragging] = useState(false);
+
   // Auto-scroll to latest message
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -32,6 +37,49 @@ const AiReceptionist = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
+
+  // touch listeners for drag-to-close (needs passive:false)
+  useEffect(() => {
+    const el = chatRef.current;
+    if (!el) return;
+
+    const handleTouchStart = (e) => {
+      if (!open) return;
+      startYRef.current = e.touches[0].clientY;
+      setDragging(true);
+    };
+
+    const handleTouchMove = (e) => {
+      if (!dragging) return;
+      e.preventDefault();
+      const delta = e.touches[0].clientY - startYRef.current;
+      if (delta > 0) setDragY(delta);
+    };
+
+    const handleTouchEnd = () => {
+      setDragging(false);
+      if (dragY > 120) setOpen(false);
+      setDragY(0);
+    };
+
+    el.addEventListener("touchstart", handleTouchStart);
+    el.addEventListener("touchmove", handleTouchMove, { passive: false });
+    el.addEventListener("touchend", handleTouchEnd);
+
+    // also block page scroll globally while dragging
+    if (dragging) {
+      document.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
+    }
+
+    return () => {
+      el.removeEventListener("touchstart", handleTouchStart);
+      el.removeEventListener("touchmove", handleTouchMove);
+      el.removeEventListener("touchend", handleTouchEnd);
+      document.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [open, dragging, dragY]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -68,44 +116,69 @@ const AiReceptionist = () => {
       {/* Chat Window */}
       <div
         ref={chatRef}
-        className={`fixed bottom-24 right-6 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl overflow-hidden z-50 border border-gray-100 transform transition-all duration-300 ${
-          open
-            ? "translate-y-0 opacity-100"
-            : "translate-y-10 opacity-0 pointer-events-none"
-        }`}
+        style={
+          dragging
+            ? { transform: `translateY(${dragY}px)`, transition: "none" }
+            : undefined
+        }
+        className={`fixed z-50 bg-white shadow-2xl border border-gray-100
+    transition-all duration-300 transform flex flex-col
+
+    /* Mobile bottom sheet (default) */
+    bottom-0 left-0 right-0 w-full h-[65vh] rounded-t-2xl
+
+    sm:left-auto sm:bottom-20 sm:right-6 sm:w-[380px] sm:h-[600px] sm:rounded-2xl
+
+    ${
+      open
+        ? "translate-y-0 opacity-100"
+        : "translate-y-full sm:translate-y-10 opacity-0 pointer-events-none"
+    }
+  `}
       >
+        {/* Drag bar (mobile only) */}
+        <div className="sm:hidden flex justify-center py-2">
+          <div className="w-10 h-1 bg-gray-300 rounded-full"></div>
+        </div>
+
         {/* Header */}
-        <div className="bg-gradient-to-r from-teal-primary to-coral px-4 py-3 text-white font-semibold">
-          Dara – AI Receptionist
+        <div className="bg-gradient-to-r from-teal-primary to-coral px-4 py-3 text-white font-semibold flex items-center justify-between rounded-xl">
+          <span>Dara – AI Receptionist</span>
+          <button
+            onClick={() => setOpen(false)}
+            className="text-white/80 hover:text-white"
+          >
+            ✕
+          </button>
         </div>
 
         {/* Messages */}
-        <div className="h-80 overflow-y-auto p-4 space-y-3 bg-cream">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-cream">
           {messages.map((msg, i) => (
-            <div key={i} className="flex flex-col max-w-[80%]">
-              <div
-                className={`text-sm p-3 rounded-xl ${
-                  msg.role === "user"
-                    ? "bg-coral text-white ml-auto"
-                    : "bg-white text-gray-700 shadow"
-                }`}
-              >
-                {msg.content}
-              </div>
+            <div
+              key={i}
+              className={`max-w-max text-sm px-4 py-3 rounded-xl ${
+                msg.role === "user"
+                  ? "ml-auto bg-coral text-white"
+                  : "bg-white text-gray-700 shadow"
+              }`}
+            >
+              {msg.content}
             </div>
           ))}
 
-          {/* Typing animation */}
+          {/* Typing indicator */}
           {loading && (
-            <div className="text-sm p-3 rounded-xl bg-white text-gray-500 shadow w-fit flex items-center space-x-1">
-              <span>Typing...</span>
+            <div className="bg-white px-4 py-2 rounded-xl shadow text-sm text-gray-500 w-fit">
+              Dara is typing...
             </div>
           )}
+
           <div ref={messagesEndRef} />
         </div>
 
         {/* Input */}
-        <div className="flex border-t">
+        <div className="border-t bg-cream p-3 flex items-center gap-2">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -115,12 +188,13 @@ const AiReceptionist = () => {
                 handleSend();
               }
             }}
-            placeholder="Type your message..."
-            className="flex-1 px-3 py-3 outline-none text-sm"
+            placeholder="Ask about appointments, services..."
+            className="flex-1 px-4 py-4 text-sm border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-gray-300 transition"
           />
+
           <button
             onClick={handleSend}
-            className="bg-teal-primary text-white px-4"
+            className="bg-teal-primary text-white px-4 py-4 rounded-xl hover:bg-teal-dark transition"
           >
             Send
           </button>
