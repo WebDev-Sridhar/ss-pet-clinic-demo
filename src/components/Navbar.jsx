@@ -65,7 +65,7 @@ export default function Navbar() {
 
           {/* CALL BUTTON */}
           <a
-            href="#contact"
+            href="tel:+1234567890"
             className="hidden md:inline-flex items-center gap-2 bg-coral text-white text-sm font-semibold px-5 py-2.5 rounded-2xl shadow-lg shadow-coral/25 transition-transform duration-300 hover:scale-105"
           >
             <PhoneIcon /> Call Now

@@ -63,7 +63,7 @@ export default function AboutSection() {
         {/* Image Slider */}
 
         <div
-          className="relative mt-16 max-w-4xl mx-auto"
+          className="relative mt-16 max-w-6xl mx-auto"
         >
 
           <div className="overflow-hidden rounded-xl shadow-xl shadow-gray-300/50">
@@ -79,7 +79,7 @@ export default function AboutSection() {
           <img
             key={i}
             src={img}
-            className="w-full flex-shrink-0 h-80 object-cover"
+            className="w-full flex-shrink-0 h-80 md:h-[500px] object-cover"
           />
         ))}
       </div>
